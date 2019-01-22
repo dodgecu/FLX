@@ -61,7 +61,6 @@ p:first-letter {
   color: #31b0d5;
   text-decoration: underline double;
 }
-
 .tm-content-box .padding-medium ol li:first-child::after,
 .tm-content-box .padding-medium ol li:nth-child(3)::after {
   content: "New";
@@ -108,14 +107,14 @@ p:first-letter {
 @media print {
   section:not(:first-of-type),
   #about,
-  .tm-sidebar {
-    display: none;
-  }
   section:before {
     content: none;
   }
   h2.tm-section-title {
     color: #0000ff;
+  }
+  .tm-sidebar {
+    display: none;
   }
   .tm-banner {
     border: none;
