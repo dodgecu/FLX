@@ -107,6 +107,9 @@ p:first-letter {
 @media print {
   section:not(:first-of-type),
   #about,
+  .tm-sidebar {
+    display: none;
+  }
   section:before {
     content: none;
   }
