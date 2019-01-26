@@ -44,7 +44,7 @@ header {
         transition: all 0.3s;
         padding: 1.5rem 10rem; }
         header .top-wrapper nav a:hover {
-          color: #d62504; }
+          color: #d42404; }
         header .top-wrapper nav a:hover {
           background-color: rgba(0, 0, 0, 0); }
         header .top-wrapper nav a:focus {
@@ -83,7 +83,7 @@ header {
         transform: translateY(-0.1rem);
         background-color: #010083; }
       header section .btn-top:hover {
-        color: #e0e0e0; }
+        color: #dfdfdf; }
 
 main {
   max-width: 109rem;
@@ -102,7 +102,7 @@ main {
     background-color: #ebebeb; }
     .toolbar input:focus {
       outline: none; }
-    .toolbar input::-webkit-input-placeholder {
+    .toolbar input::placeholder {
       font-size: 1.2rem;
       font-weight: 200;
       color: #808080;
@@ -157,7 +157,7 @@ article {
     article .btn:focus {
       outline: none; }
     article .btn:hover {
-      color: #e0e0e0; }
+      color: #dfdfdf; }
 
 .about {
   margin-top: 5rem; }
@@ -222,6 +222,7 @@ article {
       display: flex;
       flex-direction: column; }
       .contact-form form .bottom textarea {
+        max-height: 16rem;
         font-size: 2rem;
         font-weight: inherit;
         color: #808080;
@@ -245,7 +246,7 @@ article {
       .contact-form form .btn:focus {
         outline: none; }
       .contact-form form .btn:hover {
-        color: #e0e0e0; }
+        color: #dfdfdf; }
 
 footer {
   padding: 1rem;
