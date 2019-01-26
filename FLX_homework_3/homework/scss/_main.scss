@@ -11,7 +11,7 @@
   text-transform: $transform;
   @if $darken {
     &:hover {
-      color: darken($color, 12%);
+      color: darken($color, 12.5%);
     }
   }
 }
