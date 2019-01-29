@@ -184,7 +184,7 @@ html {
   align-items: flex-start;
 }
 .posts__item {
-  flex: 0 0 17%;
+  flex: 0 0 22%;
   padding: 1.4rem;
   box-shadow: 0 1px 1px 1px #9e9e9e;
   display: flex;
