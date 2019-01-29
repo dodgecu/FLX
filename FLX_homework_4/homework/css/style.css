@@ -96,11 +96,6 @@ html {
   background-color: rgba(0, 0, 0, 0.3);
   transition: all 0.4s;
 }
-.header .navigation__link:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-  color: #000;
-  border: 1.5px solid #000;
-}
 .header__authorship {
   grid-area: author;
   z-index: 10;
@@ -164,7 +159,6 @@ html {
   transition: all 0.4s;
 }
 .featured__item--likes:hover {
-  border: 1.5px solid #000;
   cursor: pointer;
 }
 .featured__item__description {
@@ -202,9 +196,6 @@ html {
   font-weight: 900;
   font-size: 1.2rem;
   transition: all 0.4s;
-}
-.posts__item--btn:hover {
-  background-color: #054846;
 }
 .posts__item--desc {
   font-size: 1.3rem;
@@ -252,7 +243,6 @@ html {
 }
 .newsletter__form--btn:hover {
   cursor: pointer;
-  background-color: #054846;
 }
 
 .footer {
@@ -326,5 +316,4 @@ html {
 }
 .footer__form--btn:hover {
   cursor: pointer;
-  background-color: #054846;
 }
