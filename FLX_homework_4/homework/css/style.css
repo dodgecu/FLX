@@ -243,11 +243,11 @@ html {
 }
 .newsletter__form--btn {
   background-color: #097774;
-  padding: 9.4px 1.5rem;
+  padding: 1rem;
   color: #fff;
   font-weight: 900;
   font-size: 1.3rem;
-  border: none;
+  border: 1px solid transparent;
   transition: background-color 0.4s;
 }
 .newsletter__form--btn:hover {
@@ -317,11 +317,11 @@ html {
 }
 .footer__form--btn {
   background-color: #097774;
-  padding: 9.1px 1.5rem;
+  padding: 1rem;
   color: #fff;
   font-weight: 900;
   font-size: 1.3rem;
-  border: none;
+  border: 1px solid transparent;
   transition: background-color 0.4s;
 }
 .footer__form--btn:hover {
