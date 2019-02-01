@@ -177,7 +177,6 @@ p {
 }
 .posts__post.slog {
   background-color: #2582ac;
-  grid-area: slog;
   display: flex;
   flex-direction: column;
   position: relative;
