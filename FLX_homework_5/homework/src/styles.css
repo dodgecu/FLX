@@ -22,7 +22,7 @@ p {
   font-size: 0.8vw;
 }
 .wrapper {
-  max-width: 80%;
+  max-width: 93%;
   margin: 0 auto;
   display: grid;
   grid-gap: 2rem;
@@ -39,6 +39,15 @@ p {
 }
 .logo {
   align-self: center;
+ 
+}
+.logo__title {
+  color: #fff;
+}
+.logo a:link, 
+.logo a:focus {
+  text-decoration: none;
+  outline: none;
 }
 .logo__tag-line {
   color: #9b1350;
@@ -55,16 +64,17 @@ p {
   display: flex;
 }
 .navigation__link:link,
-.navigation__link:visited,
-.navigation__link:focus {
+.navigation__link:visited {
   text-decoration: none;
   outline: none;
   color: #fff;
-  padding: 3.2rem 2.8rem;
+  padding: 3rem 2.8rem;
 }
-.navigation__link:hover {
+.navigation__link:hover,
+.navigation__link:focus {
   background-color: #445570;
   color: #b8b8b8;
+  outline: none;
 }
 .main {
   display: grid;
@@ -196,16 +206,16 @@ p {
 @media only screen and (min-width: 768px) and (max-width: 1280px) {
   p,
   .posts__content--body {
-    font-size: 1vw;
-    line-height: 1.5rem;
+    font-size: 1.2vw;
     margin-top: 1rem;
+    line-height: 1.8rem;
   }
   .posts__desc {
     padding: 1rem 1rem 0 1rem;
   }
   .posts__content--title,
   .slog__title {
-    font-size: 1.5vw;
+    font-size: 2vw;
   }
   .posts__date--num {
     font-size: 2.5vw;
