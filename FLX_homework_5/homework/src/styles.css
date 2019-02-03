@@ -56,7 +56,7 @@ p {
   align-self: center;
   margin-right: 4rem;
 }
-.burder {
+.burger {
   display: none;
 }
 .navigation__list {
@@ -232,7 +232,7 @@ p {
   .header {
     flex-direction: column-reverse;
   }
-  .burder {
+  .burger {
     display: block;
     align-self: center;
     margin-top: 2rem;
