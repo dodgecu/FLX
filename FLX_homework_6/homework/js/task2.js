@@ -5,8 +5,7 @@ function calculateDiscount() {
   if (
     !isNaN(total) &&
     !isNaN(discount) &&
-    (total >= 0 && discount >= 0) &&
-    (total <= 9999999 && discount < 99)
+    (total >= 0 && discount >= 0 && (total <= 9999999 && discount < 99))
   ) {
     const savings = (total / 100) * discount;
     const discounted = total - savings;
@@ -14,8 +13,7 @@ function calculateDiscount() {
         Price without discount: ${+total.toFixed(2)} 
         Discount: ${+discount.toFixed(2)}%
         Price with discount: ${+discounted.toFixed(2)}
-        Saved: ${+savings.toFixed(2)}
-  `;
+        Saved: ${+savings.toFixed(2)}`;
   } else {
     return "Invalid input data";
   }
