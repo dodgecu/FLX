@@ -18,11 +18,11 @@ if (confirm("Do you want to play a game?")) {
     ) {
       const guess = parseInt(
         prompt(`
-          Enter a number from 0 to ${mutated.defaultRange}
-          Attempts left: ${attempts}
-          Total prize: ${mutated.prize}$
-          Possible prize on current attempt: ${currentBid}$
-        `)
+            Enter a number from 0 to ${mutated.defaultRange}
+            Attempts left: ${attempts}
+            Total prize: ${mutated.prize}$
+            Possible prize on current attempt: ${currentBid}$
+          `)
       );
       if (guess === winningNum) {
         mutated.prize += currentBid;
@@ -30,8 +30,8 @@ if (confirm("Do you want to play a game?")) {
         mutated.bid *= 3;
         if (
           confirm(`
-          Congratulation! Your prize is: ${mutated.prize}$.
-          Do you want to continue?`)
+            Congratulation! Your prize is: ${mutated.prize}$.
+            Do you want to continue?`)
         ) {
           gameOn = true;
           break;
@@ -43,9 +43,8 @@ if (confirm("Do you want to play a game?")) {
             mutated.bid = globals.bid;
             gameOn = true;
             break;
-          } else {
-            break;
           }
+          break;
         }
       } else if (isNaN(guess)) {
         alert("You did not become a millionaire, but can.");
