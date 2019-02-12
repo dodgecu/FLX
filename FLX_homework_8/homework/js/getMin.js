@@ -1,10 +1,10 @@
 function getMin(...args) {
-  let min = args[0];
+  let minNum = args[0];
   for (let i = 1; i < args.length; i++) {
-    if (min > args[i]) {
-      min = args[i];
+    if (minNum > args[i]) {
+      minNum = args[i];
     }
   }
-  return min;
+  return minNum;
 }
 getMin(3, 0, -3);
