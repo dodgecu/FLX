@@ -1,6 +1,7 @@
-function pipe(num, ...fn) {
-  for (let i = 0; i < fn.length - 1; i++) {
-    let piper = fn[i];
+function pipe() {
+  let num = arguments[0];
+  for (let i = 1; i < arguments.length; i++) {
+    let piper = arguments[i];
     num = piper(num);
   }
   return num;
