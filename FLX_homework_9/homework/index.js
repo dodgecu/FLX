@@ -32,11 +32,13 @@ const data = [
     favoriteFruit: "banana"
   }
 ];
+
 /**
  * Returns an array of data types passed in as arguments
  * @param  {*} types - any data type
  * @returns {Array}
  */
+
 function findTypes(...types) {
   let result = [];
   for (let i = 0; i < types.length; i++) {
@@ -52,6 +54,7 @@ findTypes(null, 5, "hello");
  * @param {Callback} fn - callback function
  * @returns {undefined}
  */
+
 function executeforEach(arr, fn) {
   for (let i = 0; i < arr.length; i++) {
     fn(arr[i]);
@@ -65,12 +68,12 @@ executeforEach([22, 3, 8, 4], item => console.log(item));
  * @param {Callback} fn - callback function
  * @returns {Array}
  */
+
 function mapArray(arr, fn) {
   let mutated = [];
   executeforEach(arr, element => mutated.push(fn(element)));
   return mutated;
 }
-
 mapArray([22, 3, 8, 4], item => Math.sqrt(item));
 
 /**
@@ -79,6 +82,7 @@ mapArray([22, 3, 8, 4], item => Math.sqrt(item));
  * @param {Callback} fn - Callback function
  * @returns {Array}
  */
+
 function filterArray(arr, fn) {
   let mutated = [];
   executeforEach(arr, element => {
@@ -88,7 +92,6 @@ function filterArray(arr, fn) {
   });
   return mutated;
 }
-
 filterArray([22, 3, 8, 4], item => item < 10);
 
 /**
@@ -96,10 +99,10 @@ filterArray([22, 3, 8, 4], item => item < 10);
  * @param {Array.<Object>} inputData - array of objects
  * @returns {number}
  */
+
 function getAmountOfAdultPeople(inputData) {
   return filterArray(inputData, person => person.age > 18).length;
 }
-
 getAmountOfAdultPeople(data);
 
 /**
@@ -107,17 +110,17 @@ getAmountOfAdultPeople(data);
  * @param {Array.<Object>} inputData - array of objects
  * @returns {Array}
  */
+
 function getGreenAdultBananaLovers(inputData) {
-  const filterPeople = filterArray(
-    inputData,
-    person =>
+  const filterPeople = filterArray(inputData, person => {
+    return (
       person.age > 18 &&
       person.favoriteFruit === "banana" &&
       person.eyeColor === "green"
-  );
+    );
+  });
   return mapArray(filterPeople, personName => personName.name);
 }
-
 getGreenAdultBananaLovers(data);
 
 /**
@@ -125,6 +128,7 @@ getGreenAdultBananaLovers(data);
  * @param {Object} obj - object
  * @returns {Array}
  */
+
 function keys(obj) {
   let arr = [];
   for (let key in obj) {
@@ -134,7 +138,6 @@ function keys(obj) {
   }
   return arr;
 }
-
 keys({ keyOne: 1, keyTwo: 2, keyThree: 3 });
 
 /**
@@ -142,6 +145,7 @@ keys({ keyOne: 1, keyTwo: 2, keyThree: 3 });
  * @param {Object} obj - object
  * @returns {Array}
  */
+
 function values(obj) {
   let arr = [];
   for (let key in obj) {
@@ -151,7 +155,6 @@ function values(obj) {
   }
   return arr;
 }
-
 values({ keyOne: 1, keyTwo: 2, keyThree: 3 });
 
 /**
@@ -159,12 +162,12 @@ values({ keyOne: 1, keyTwo: 2, keyThree: 3 });
  * @param {Object} date - ISO Date object
  * @returns {string}
  */
+
 function showFormattedDate(date) {
   return `Date: ${date.getDate()} of ${date.toLocaleString("en-US", {
     month: "short"
   })}, ${date.getFullYear()} `;
 }
-
 showFormattedDate(new Date("2019-01-27T01:10:00"));
 
 /**
@@ -172,10 +175,10 @@ showFormattedDate(new Date("2019-01-27T01:10:00"));
  * @param {Object} date - ISO Date object
  * @returns {boolean}
  */
+
 function isEvenYear(date) {
   return date.getFullYear() % 2 === 0;
 }
-
 isEvenYear(new Date("2019-01-27T01:10:00"));
 
 /**
@@ -183,8 +186,8 @@ isEvenYear(new Date("2019-01-27T01:10:00"));
  * @param {Object} date - ISO Date object
  * @returns {boolean}
  */
+
 function isEvenMonth(date) {
   return (date.getMonth() + 1) % 2 === 0;
 }
-
 isEvenMonth(new Date("2019-02-27T01:10:00"));
