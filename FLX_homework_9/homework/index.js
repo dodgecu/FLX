@@ -84,13 +84,13 @@ mapArray([22, 3, 8, 4], item => Math.sqrt(item));
  */
 
 function filterArray(arr, fn) {
-  let mutated = [];
+  let filtered = [];
   executeforEach(arr, element => {
     if (fn(element)) {
-      mutated.push(element);
+      filtered.push(element);
     }
   });
-  return mutated;
+  return filtered;
 }
 filterArray([22, 3, 8, 4], item => item < 10);
 
