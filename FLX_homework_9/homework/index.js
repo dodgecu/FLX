@@ -34,17 +34,16 @@ const data = [
 ];
 
 /**
- * Returns an array of data types passed in as arguments
  * @param  {*} types - any data type
- * @returns {Array}
+ * @returns {Array} - an array of data types passed in as arguments
  */
 
 function findTypes(...types) {
-  let result = [];
+  let output = [];
   for (let i = 0; i < types.length; i++) {
-    result.push(typeof types[i]);
+    output.push(typeof types[i]);
   }
-  return result;
+  return output;
 }
 findTypes(null, 5, "hello");
 
@@ -63,28 +62,26 @@ function executeforEach(arr, fn) {
 executeforEach([22, 3, 8, 4], item => console.log(item));
 
 /**
- * Returns a new array of elements mutated by provided callback function
  * @param {Array} arr - Array of any types of data
  * @param {Callback} fn - callback function
- * @returns {Array}
+ * @returns {Array} - a new array of elements mutated by provided callback function
  */
 
 function mapArray(arr, fn) {
-  let mutated = [];
+  const mutated = [];
   executeforEach(arr, element => mutated.push(fn(element)));
   return mutated;
 }
 mapArray([22, 3, 8, 4], item => Math.sqrt(item));
 
 /**
- * Returns a new array of callback-filtered elements
  * @param {Array} arr - Array of any  data types
  * @param {Callback} fn - Callback function
- * @returns {Array}
+ * @returns {Array} - a new array of callback-filtered elements
  */
 
 function filterArray(arr, fn) {
-  let filtered = [];
+  const filtered = [];
   executeforEach(arr, element => {
     if (fn(element)) {
       filtered.push(element);
@@ -95,24 +92,22 @@ function filterArray(arr, fn) {
 filterArray([22, 3, 8, 4], item => item < 10);
 
 /**
- * Returns a number of people who are older than 18 years of age
- * @param {Array.<Object>} inputData - array of objects
- * @returns {number}
+ * @param {Array.<Object>} people - array of objects
+ * @returns {number} - a number of people who are older than 18 years of age
  */
 
-function getAmountOfAdultPeople(inputData) {
-  return filterArray(inputData, person => person.age > 18).length;
+function getAmountOfAdultPeople(people) {
+  return filterArray(people, person => person.age > 18).length;
 }
 getAmountOfAdultPeople(data);
 
 /**
- * Returns an array of green-eyed people who dig bananas and are aged more than 18 years
- * @param {Array.<Object>} inputData - array of objects
- * @returns {Array}
+ * @param {Array.<Object>} people - array of objects
+ * @returns {Array} - an array of green-eyed people who dig bananas and are aged more than 18 years
  */
 
-function getGreenAdultBananaLovers(inputData) {
-  const filterPeople = filterArray(inputData, person => {
+function getGreenAdultBananaLovers(people) {
+  const filterPeople = filterArray(people, person => {
     return (
       person.age > 18 &&
       person.favoriteFruit === "banana" &&
@@ -124,43 +119,40 @@ function getGreenAdultBananaLovers(inputData) {
 getGreenAdultBananaLovers(data);
 
 /**
- * Returns an array of object keys
  * @param {Object} obj - object
- * @returns {Array}
+ * @returns {Array} - an array of object keys
  */
 
 function keys(obj) {
-  let arr = [];
+  const objKeys = [];
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
-      arr.push(key);
+      objKeys.push(key);
     }
   }
-  return arr;
+  return objKeys;
 }
 keys({ keyOne: 1, keyTwo: 2, keyThree: 3 });
 
 /**
- * Returns an array of object values
  * @param {Object} obj - object
- * @returns {Array}
+ * @returns {Array} - an array of object values
  */
 
 function values(obj) {
-  let arr = [];
+  const objVals = [];
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
-      arr.push(obj[key]);
+      objVals.push(obj[key]);
     }
   }
-  return arr;
+  return objVals;
 }
 values({ keyOne: 1, keyTwo: 2, keyThree: 3 });
 
 /**
- * Returns formatted date ex.,  Date: 27 of Jan, 2019
  * @param {Object} date - ISO Date object
- * @returns {string}
+ * @returns {string} - formatted date ex.,  Date: 27 of Jan, 2019
  */
 
 function showFormattedDate(date) {
@@ -171,9 +163,8 @@ function showFormattedDate(date) {
 showFormattedDate(new Date("2019-01-27T01:10:00"));
 
 /**
- * Returns true/false if year number is even/odd
  * @param {Object} date - ISO Date object
- * @returns {boolean}
+ * @returns {boolean} - true or false if year number is even or odd respectively
  */
 
 function isEvenYear(date) {
@@ -182,9 +173,8 @@ function isEvenYear(date) {
 isEvenYear(new Date("2019-01-27T01:10:00"));
 
 /**
- * Returns true/false if month num is even/odd
  * @param {Object} date - ISO Date object
- * @returns {boolean}
+ * @returns {boolean} - true or false if month number is even or odd respectively
  */
 
 function isEvenMonth(date) {
