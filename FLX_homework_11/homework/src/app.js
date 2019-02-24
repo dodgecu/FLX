@@ -83,6 +83,7 @@ function actionDone(e) {
 }
 
 function dragStart(e) {
+  e.dataTransfer.setData('application/node type', this);
   draggedElement = e.target;
   draggedElement.className += ' hold';
 }
