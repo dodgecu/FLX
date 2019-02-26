@@ -164,7 +164,7 @@ class Template extends Storage {
       if (e.target.getAttribute('data-done') === 'false') {
         const id = e.target.getAttribute('data-id');
         window.location.hash = `/modify/item_${id}`;
-        this.input.value = e.target.textContent;
+        this.input.value = e.target.textContent.trim();
         task = e.target.getAttribute('data-id');
       }
 
