@@ -55,10 +55,7 @@ class Storage {
         tempItem.push(storage.splice(i, 1));
       }
     });
-    const updatedList = [...storage, ...tempItem].reduce(
-      (a, b) => a.concat(b),
-      []
-    );
+    const updatedList = [...storage, ...tempItem].reduce((a, b) => a.concat(b), []);
 
     localStorage.setItem('tasks', JSON.stringify(updatedList));
   }
@@ -180,11 +177,11 @@ class Template extends Storage {
       }
 
       if (e.target.className === 'remove') {
-        template.deleteTask(e.target);
+        this.deleteTask(e.target);
       }
 
       if (e.target.className === 'done') {
-        template.isDone(e.target);
+        this.isDone(e.target);
       }
 
     };
