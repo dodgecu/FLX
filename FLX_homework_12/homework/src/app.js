@@ -70,6 +70,7 @@ class Storage {
         item.title = newTitle;
       }
     });
+
     localStorage.setItem('tasks', JSON.stringify(storage));
   }
 }
@@ -86,27 +87,11 @@ class Template extends Storage {
     this.list.className = 'task-list';
     this.input = document.createElement('input');
     this.input.setAttribute('type', 'text');
-    this.button = type => {
+    this.button = (btnclass, title) => {
       const btn = document.createElement('button');
       btn.setAttribute('type', 'button');
-      switch (type) {
-        case 'Primary':
-          btn.className = 'add-task';
-          btn.textContent = `Add New Task`;
-          break;
-        case 'Cancel':
-          btn.className = 'btns-update__cancel-task';
-          btn.textContent = `Cancel`;
-          break;
-        case 'Save':
-          btn.className = 'btns-update__modify-task';
-          btn.textContent = `Save changes`;
-          break;
-        default:
-          btn.className = '';
-          btn.textContent = '';
-      }
-
+      btn.className = btnclass;
+      btn.textContent = title;
       return btn;
     };
   }
@@ -124,13 +109,18 @@ class Template extends Storage {
         li.className = 'task-list__item';
         li.setAttribute('data-id', task.id);
         li.setAttribute('data-done', task.isDone);
-        li.innerHTML = `<span class='done'></span>${
-          task.title
-          }<span class='remove'></span></li>`;
+        li.innerHTML = `<span class='done'></span>
+                        ${task.title}
+                        <span class='remove'></span>`;
         this.list.insertBefore(li, lastItem);
       }
     }
-    this.main.append(this.title, this.button('Primary'), this.list, this.div);
+    this.main.append(
+      this.title,
+      this.button('add-task', 'Add New Task'),
+      this.list,
+      this.div
+    );
     this.root.appendChild(this.main);
   }
 
@@ -161,8 +151,7 @@ class Template extends Storage {
 
   loadEventListeners() {
     let task;
-
-    document.querySelector('#root').addEventListener('click', e => {
+    const getEvents = e => {
       if (e.target.className === 'btns-update__modify-task') {
         if (this.input.value.trim() !== '') {
           if (window.location.hash === '#/add') {
@@ -170,43 +159,37 @@ class Template extends Storage {
           } else {
             this.edit(task);
           }
+
           window.location.hash = '';
         }
       }
-    });
 
-    document.querySelector('#root').addEventListener('click', e => {
       if (e.target.getAttribute('data-done') === 'false') {
         const id = e.target.getAttribute('data-id');
         window.location.hash = `/modify/item_${id}`;
         this.input.value = e.target.textContent;
         task = e.target.getAttribute('data-id');
       }
-    });
 
-    document.querySelector('#root').addEventListener('click', e => {
       if (e.target.className === 'add-task') {
         window.location.hash = '/add';
       }
-    });
 
-    document.querySelector('#root').addEventListener('click', e => {
       if (e.target.className === 'btns-update__cancel-task') {
         window.location.hash = '';
       }
-    });
 
-    document.querySelector('#root').addEventListener('click', e => {
       if (e.target.className === 'remove') {
         template.deleteTask(e.target);
       }
-    });
 
-    document.querySelector('#root').addEventListener('click', e => {
       if (e.target.className === 'done') {
         template.isDone(e.target);
       }
-    });
+
+    };
+
+    this.root.addEventListener('click', getEvents);
   }
 
   render() {
@@ -216,11 +199,17 @@ class Template extends Storage {
     if (window.location.hash === `#/add`) {
       this.title.textContent = 'Add Task';
       this.main.append(this.title, this.input, this.div);
-      this.div.append(this.button('Cancel'), this.button('Save'));
+      this.div.append(
+        this.button('btns-update__cancel-task', 'Cancel'),
+        this.button('btns-update__modify-task', 'Save Changes')
+      );
     } else if (window.location.hash === `#/modify/item_${id}`) {
       this.title.textContent = 'Modify Task';
       this.main.append(this.title, this.input, this.div);
-      this.div.append(this.button('Cancel'), this.button('Save'));
+      this.div.append(
+        this.button('btns-update__cancel-task', 'Cancel'),
+        this.button('btns-update__modify-task', 'Save Changes')
+      );
     } else if (window.location.hash === '') {
       this.title.textContent = 'Simple TODO Application';
       this.defaultTemplate();
@@ -232,7 +221,5 @@ class Template extends Storage {
 
 const template = new Template(document.getElementById('root'));
 
-document.addEventListener('DOMContentLoaded', () => {
-  template.loadEventListeners(), template.render();
-});
+document.addEventListener('DOMContentLoaded', () => template.loadEventListeners(), template.render());
 window.addEventListener('hashchange', () => template.render());
