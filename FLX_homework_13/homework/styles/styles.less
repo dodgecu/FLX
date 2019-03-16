@@ -1,0 +1,83 @@
+@import "bootstrap.min.css";
+@import "variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h3 {
+  color: @blue;
+  font-weight: 600;
+}
+
+.navbar {
+  padding: 0 1rem;
+
+  .navbar-toggler {
+    margin: 0.5rem 0;
+  }
+
+  .nav-item {
+    &.active {
+      background-color: @blue;
+
+      .nav-link {
+        color: @white;
+      }
+    }
+
+    .nav-link {
+      padding: 0.9rem;
+    }
+  }
+}
+
+.class-1 {
+  border: 1px solid @red;
+  .card-title {
+    background-color: @red;
+  }
+}
+
+.class-2 {
+  border: 1px solid @blue;
+  .card-title {
+    background-color: @blue;
+  }
+}
+
+.class-3 {
+  border: 1px solid @orange;
+  .card-title {
+    background-color: @orange;
+  }
+}
+
+.class-4 {
+  border: 1px solid @green;
+  .card-title {
+    background-color: @green;
+  }
+}
+
+.copyright {
+  background-color: #666;
+}
+
+@media (min-width: 767.98px) and (max-width: 991.98px) {
+  .class-desc {
+    font-size: 0.8rem;
+  }
+}
