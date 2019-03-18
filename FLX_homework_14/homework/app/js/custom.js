@@ -23,7 +23,7 @@ $(document).on('ready', function () {
     LazyLoad
   -------------------------------------------------------------------------------*/
   function loadMobileBg(selector, value) {
-    const isMobile = 'ontouchstart' in window;
+    const isMobile = 'ontouchstart' in window && window.innerWidth < 769;
     if (isMobile) {
       selector.setAttribute("data-bg", value);
     }
