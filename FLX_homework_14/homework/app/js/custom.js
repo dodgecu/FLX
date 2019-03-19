@@ -34,7 +34,7 @@ $(document).on('ready', function () {
     load_delay: 300,
     callback_enter: () => {
       const bg = document.getElementById("home");
-      loadMobileBg(bg, "url(img/home-bg-mobile.jpg)");
+      loadMobileBg(bg, bg.dataset.mobilebg);
     }
   }
 
