@@ -28,9 +28,10 @@ function Company({ name, owner, maxCompanySize } = {}) {
   const _errors = _validate(this, _companyValidationSchema);
 
   if (_errors.length > _zero) {
-    for (const message of _errors) {
-      console.log(message);
+    for (const errorMsg of _errors) {
+      console.log(errorMsg);
     }
+
     return _errors;
   }
 
@@ -169,6 +170,7 @@ function Employee({ name, age, salary, primarySkill } = {}) {
     for (let errorMsg of _errors) {
       console.log(errorMsg);
     }
+
     return _errors;
   }
 
