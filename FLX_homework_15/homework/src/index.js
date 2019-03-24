@@ -67,7 +67,6 @@ function Company({ name, owner, maxCompanySize } = {}) {
             employees.salary ===
             Math.min(..._employees.map(worker => worker.salary))
         );
-        console.log(lowestIncomeEmployees);
         this.removeEmployee(_employees.indexOf(lowestIncomeEmployees[_zero]));
         this.addNewEmployee(employee);
       }
