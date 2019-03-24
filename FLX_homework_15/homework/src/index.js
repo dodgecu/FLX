@@ -7,6 +7,20 @@ function Company({ name, owner, maxCompanySize } = {}) {
   const _one = 1;
   const _zero = 0;
 
+  /**
+   *  Private
+   */
+
+  const _logs = [];
+  const _employees = [];
+  const _date = () => {
+    return new Date();
+  };
+
+  /**
+   *  Validation
+   */
+
   const _companyValidationSchema = {
     name: companyName => /^[A-Za-z\s]+$/.test(companyName),
     owner: companyOwner => /^[A-Za-z\s]+$/.test(companyOwner),
@@ -34,16 +48,13 @@ function Company({ name, owner, maxCompanySize } = {}) {
 
     return _errors;
   }
-
-  const _logs = [];
-  const _employees = [];
-  const _date = () => {
-    return new Date();
-  };
-
   _logs.push(
     `${this.name} was created in ${_date().toLocaleString()}, by ${this.owner}`
   );
+
+  /**
+   *  Public
+   */
 
   this.addNewEmployee = function (employee) {
     if (employee instanceof Employee) {
@@ -52,13 +63,14 @@ function Company({ name, owner, maxCompanySize } = {}) {
         _logs.push(
           `${employee.name} starts working at ${this.name} in ${_date().toLocaleString()}`
         );
-        employee.hire(this.name);
+        employee.hire(this);
       } else {
         const lowestIncomeEmployees = _employees.filter(
           employees =>
             employees.salary ===
             Math.min(..._employees.map(worker => worker.salary))
         );
+        console.log(lowestIncomeEmployees);
         this.removeEmployee(_employees.indexOf(lowestIncomeEmployees[_zero]));
         this.addNewEmployee(employee);
       }
@@ -69,11 +81,15 @@ function Company({ name, owner, maxCompanySize } = {}) {
 
   this.removeEmployee = function (id) {
     if (!isNaN(parseFloat(id)) && isFinite(id)) {
-      _logs.push(
-        `${_employees[id].name} is fired from ${this.name} in ${_date().toLocaleString()}`
-      );
-      _employees[id].fire();
-      _employees.splice(id, _one);
+      if (_employees[id] !== undefined) {
+        _logs.push(
+          `${_employees[id].name} is fired from ${this.name} in ${_date().toLocaleString()}`
+        );
+        _employees[id].fire();
+        _employees.splice(id, _one);
+      } else {
+        console.log(`Employee you are trying to remove does not exist!`);
+      }
     } else {
       console.log(`Please, specify valid employee id`);
     }
@@ -82,12 +98,10 @@ function Company({ name, owner, maxCompanySize } = {}) {
   this.getAvarageSalary = function () {
     const two = 2;
     const avergageSalary =
-      _employees
-        .map(employee => employee.salary)
-        .reduce((totalSalary, salary) => {
-          const average = totalSalary += salary;
-          return average;
-        }) / _employees.length;
+      _employees.reduce((totalSalary, salary) => {
+        const average = totalSalary += salary.salary;
+        return average;
+      }, _zero) / _employees.length;
     return `Average salary: ${parseFloat(avergageSalary.toFixed(two))}`;
   };
 
@@ -118,18 +132,19 @@ function Company({ name, owner, maxCompanySize } = {}) {
 
   this.getAvarageAge = function () {
     const avergageAge =
-      _employees
-        .map(employee => employee.age)
-        .reduce((totalAge, age) => {
-          const average = totalAge += age;
-          return average;
-        }) / _employees.length;
+      _employees.reduce((totalAge, age) => {
+        const average = totalAge += age.age;
+        return average;
+      }, _zero) / _employees.length;
 
     return `Average age: ${Math.round(avergageAge)}`;
   };
 
   this.getHistory = function () {
     return _logs;
+  };
+  this.showAll = function () {
+    return _employees;
   };
 }
 
@@ -143,6 +158,22 @@ function Employee({ name, age, salary, primarySkill } = {}) {
   // Magic numbers
   const _zero = 0;
   const _thousand = 1000;
+
+  /**
+   *  Private
+   */
+
+  const _logs = [];
+  let _startDate = _zero;
+  let _endDate = _zero;
+  let _totalWorkSeconds = _zero;
+  const _date = () => {
+    return new Date();
+  };
+
+  /**
+   *  Validation
+   */
 
   const _employeeValidationSchema = {
     name: employeeName => /^[A-Za-z\s]+$/.test(employeeName),
@@ -174,13 +205,9 @@ function Employee({ name, age, salary, primarySkill } = {}) {
     return _errors;
   }
 
-  const _logs = [];
-  let _startDate = _zero;
-  let _endDate = _zero;
-  let _totalWorkSeconds = _zero;
-  const _date = () => {
-    return new Date();
-  };
+  /**
+   *  Public
+   */
 
   this.getSalary = function () {
     return this.salary;
@@ -210,7 +237,7 @@ function Employee({ name, age, salary, primarySkill } = {}) {
 
   this.hire = function (company) {
     _startDate = _date();
-    this.currentCompany = company;
+    this.currentCompany = company.name;
     _logs.push(
       `${this.name} is hired to ${this.currentCompany} in ${_date().toLocaleString()}`
     );
@@ -221,7 +248,7 @@ function Employee({ name, age, salary, primarySkill } = {}) {
     _logs.push(
       `${this.name} is fired from ${this.currentCompany} in ${_date().toLocaleString()}`
     );
-    this.currentCompany = null;
+    this.currentCompany = `unemployed`;
   };
 
   this.getHistory = function () {
@@ -229,42 +256,14 @@ function Employee({ name, age, salary, primarySkill } = {}) {
   };
 }
 
-// let artem = new Employee({
-//   name: "Artem",
-//   age: 15,
-//   salary: 1000,
-//   primarySkill: "UX"
-// });
-// let vova = new Employee({
-//   name: "Vova",
-//   age: 16,
-//   salary: 2000,
-//   primarySkill: "BE"
-// });
-// let vasyl = new Employee({
-//   name: "Vasyl",
-//   age: 25,
-//   salary: 1000,
-//   primarySkill: "FE"
-// });
-// let ivan = new Employee({
-//   name: "Ivan",
-//   age: 35,
-//   salary: 5000,
-//   primarySkill: "FE"
-// });
-// let orest = new Employee({
-//   name: "Orest",
-//   age: 29,
-//   salary: 300,
-//   primarySkill: "AT"
-// });
-// let anton = new Employee({
-//   name: "Anton",
-//   age: 19,
-//   salary: 500,
-//   primarySkill: "Manager"
-// });
+
+
+// let artem = new Employee({ name: "Artem", age: 15, salary: 1000, primarySkill: "UX" });
+// let vova = new Employee({ name: "Vova", age: 16, salary: 2000, primarySkill: "BE" });
+// let vasyl = new Employee({ name: "Vasyl", age: 25, salary: 1000, primarySkill: "FE" });
+// let ivan = new Employee({ name: "Ivan", age: 35, salary: 5000, primarySkill: "FE" });
+// let orest = new Employee({ name: "Orest", age: 29, salary: 300, primarySkill: "AT" });
+// let anton = new Employee({ name: "Anton", age: 19, salary: 500, primarySkill: "Manager" });
 
 // let epam = new Company({ name: "Epam", owner: "Arkadii", maxCompanySize: 5 });
 // epam.addNewEmployee(artem);
@@ -288,6 +287,7 @@ function Employee({ name, age, salary, primarySkill } = {}) {
 // */
 // epam.removeEmployee(2);
 
+
 // console.log(vasyl.getHistory());
 
 // /*
@@ -296,7 +296,7 @@ function Employee({ name, age, salary, primarySkill } = {}) {
 // */
 
 // console.log(epam.getAvarageSalary()); // -> 2125
-// console.log(epam.getAvarageAge()); // -> 21.25
+// console.log(epam.getAvarageAge());  // -> 21.25
 
 // epam.addNewEmployee(5, 6, 9, 5); // -> Please try to add Employee instance
 
