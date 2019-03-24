@@ -10,7 +10,6 @@ function Company({ name, owner, maxCompanySize } = {}) {
   /**
    *  Private
    */
-
   const _logs = [];
   const _employees = [];
   const _date = () => {
@@ -20,7 +19,6 @@ function Company({ name, owner, maxCompanySize } = {}) {
   /**
    *  Validation
    */
-
   const _companyValidationSchema = {
     name: companyName => /^[A-Za-z\s]+$/.test(companyName),
     owner: companyOwner => /^[A-Za-z\s]+$/.test(companyOwner),
@@ -55,7 +53,6 @@ function Company({ name, owner, maxCompanySize } = {}) {
   /**
    *  Public
    */
-
   this.addNewEmployee = function (employee) {
     if (employee instanceof Employee) {
       if (_employees.length < this.maxCompanySize) {
@@ -162,7 +159,6 @@ function Employee({ name, age, salary, primarySkill } = {}) {
   /**
    *  Private
    */
-
   const _logs = [];
   let _startDate = _zero;
   let _endDate = _zero;
@@ -174,7 +170,6 @@ function Employee({ name, age, salary, primarySkill } = {}) {
   /**
    *  Validation
    */
-
   const _employeeValidationSchema = {
     name: employeeName => /^[A-Za-z\s]+$/.test(employeeName),
     age: employeeAge => parseInt(age) === Number(employeeAge),
@@ -208,7 +203,6 @@ function Employee({ name, age, salary, primarySkill } = {}) {
   /**
    *  Public
    */
-
   this.getSalary = function () {
     return this.salary;
   };
