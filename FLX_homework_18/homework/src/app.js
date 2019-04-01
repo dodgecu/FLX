@@ -345,9 +345,7 @@ function renderComments(comments) {
   for (let comment of comments) {
     postsBlock.innerHTML += `
       <div class="user-posts__comments">
-        <h4 class="user-posts__comments--email">Comment from: ${
-      comment.email
-      }</h4>
+        <h4 class="user-posts__comments--email">Comment from: ${comment.email}</h4>
         <p class="user-posts__comments--name">Comment name: ${comment.name}</p>
         <p class="user-posts__comments--comment">Body: ${comment.body}</p>
       </div>
@@ -363,7 +361,7 @@ function submitPost(e) {
     const dataUserId = mainInfo.dataset.userId;
     if (postBody.value.trim() !== '' && postTitle.value.trim() !== '') {
       const data = {
-        userId: dataUserId,
+        userId: parseInt(dataUserId),
         title: postTitle.value,
         body: postBody.value
       };
@@ -391,20 +389,24 @@ function submitPost(e) {
 // Edit post UI
 function editPost(e) {
   if (e.target.classList.contains('fa-pencil')) {
-    const editBtn = document.querySelector('.form__btn');
-    postTitle = document.getElementById('title');
-    postBody = document.getElementById('body');
-    editBtn.textContent = 'Update Post';
-    editBtn.classList.remove('btn__add');
-    editBtn.classList.add('btn__update');
-    postTitle.value = userPosts[postId].title;
-    postBody.value = userPosts[postId].body;
-    mainPostArea.addEventListener('click', submitCustomizedPost);
+    if (document.querySelector('.user-posts__item').dataset.id === "undefined") {
+      showAlert("Unfortunately, this post cannot be edited!")
+    } else {
+      const editBtn = document.querySelector('.form__btn');
+      postTitle = document.getElementById('title');
+      postBody = document.getElementById('body');
+      editBtn.textContent = 'Update Post';
+      editBtn.classList.remove('btn__add');
+      editBtn.classList.add('btn__update');
+      postTitle.value = userPosts[postId].title;
+      postBody.value = userPosts[postId].body;
+      mainPostArea.addEventListener('click', submitCustomizedPost);
+    }
   }
   e.preventDefault();
 }
 
-// Submit customized post to the API
+// Submit customized post to the API (ONLY EXISTING POSTS CAN BE EDITED). Returns error when editing new since data is not persisted
 function submitCustomizedPost(e) {
   if (e.target.classList.contains('btn__update')) {
     postTitle = document.getElementById('title');

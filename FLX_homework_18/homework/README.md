@@ -4,6 +4,6 @@
 
 #### [demo]
 
-[json]: https://github.com/typicode/json-server
+[json]: https://jsonplaceholder.typicode.com/
 [thecatapi]: https://thecatapi.com/
 [demo]: https://dodgecu.github.io/FLX/FLX_homework_18/homework/index.html
