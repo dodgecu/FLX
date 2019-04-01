@@ -155,8 +155,7 @@ function submitUserChanges(e) {
     website: modalWebsite.value,
     catchPhrase: modalCatchPhrase.value
   };
-  xhr.put(
-    `https://jsonplaceholder.typicode.com/users/${dataUserId}`,
+  xhr.put(`https://jsonplaceholder.typicode.com/users/${dataUserId}`,
     data,
     (error, success) => {
       if (success) {
@@ -182,8 +181,7 @@ function submitUserChanges(e) {
 function deleteUser(e) {
   if (e.target.classList.contains('fa-trash')) {
     const dataUserId = mainInfo.dataset.userId;
-    xhr.delete(
-      `https://jsonplaceholder.typicode.com/users/${dataUserId}`,
+    xhr.delete(`https://jsonplaceholder.typicode.com/users/${dataUserId}`,
       (error, success) => {
         if (success) {
           users.splice(userId, 1);
@@ -228,8 +226,7 @@ function next(e) {
 // Get Posts from API
 function getPosts() {
   const dataUserId = mainInfo.dataset.userId;
-  xhr.get(
-    `https://jsonplaceholder.typicode.com/posts?userId=${dataUserId}`,
+  xhr.get(`https://jsonplaceholder.typicode.com/posts?userId=${dataUserId}`,
     (error, success) => {
       if (success) {
         showPosts(success);
@@ -326,8 +323,7 @@ function nextPost(e) {
 function getComments(e) {
   const dataPostId = document.querySelector('.user-posts__item').dataset.id;
   if (e.target.classList.contains('show-comments')) {
-    xhr.get(
-      `https://jsonplaceholder.typicode.com/comments?postId=${dataPostId}`,
+    xhr.get(`https://jsonplaceholder.typicode.com/comments?postId=${dataPostId}`,
       (error, success) => {
         if (success) {
           renderComments(success);
@@ -366,17 +362,15 @@ function submitPost(e) {
         body: postBody.value
       };
       userPosts.push(data);
-      xhr.post(
-        `https://jsonplaceholder.typicode.com/posts`,
+      xhr.post(`https://jsonplaceholder.typicode.com/posts`,
         data,
         (error, result) => {
           if (result) {
             postTitle.value = '';
             postBody.value = '';
             showAlert(`Post successfully added!`);
-          }
-          if (error) {
-            console.error(error);
+          } else {
+            console.log(error);
           }
         }
       );
@@ -419,8 +413,7 @@ function submitCustomizedPost(e) {
         title: postTitle.value,
         body: postBody.value
       };
-      xhr.put(
-        `https://jsonplaceholder.typicode.com/posts/${dataPostId}`,
+      xhr.put(`https://jsonplaceholder.typicode.com/posts/${dataPostId}`,
         data,
         (error, success) => {
           if (success) {
@@ -435,7 +428,7 @@ function submitCustomizedPost(e) {
             editBtn.classList.add('btn__add');
             showAlert(`Post successfully updated!`);
           } else {
-            console.error(error);
+            console.log(error);
           }
         }
       );
@@ -449,15 +442,13 @@ function submitCustomizedPost(e) {
 function deletePost(e) {
   if (e.target.classList.contains('fa-remove')) {
     const dataPostId = document.querySelector('.user-posts__item').dataset.id;
-    xhr.delete(
-      `https://jsonplaceholder.typicode.com/posts/${dataPostId}`,
+    xhr.delete(`https://jsonplaceholder.typicode.com/posts/${dataPostId}`,
       (error, success) => {
         if (success) {
           userPosts.splice(postId, 1);
           postId === 0 ? postId : postId--;
-          document.querySelector(
-            '.user-posts__item'
-          ).innerHTML = `<p class="user-posts__removed">Post Successfully Removed!</p>`;
+          document.querySelector('.user-posts__item')
+            .innerHTML = `<p class="user-posts__removed">Post Successfully Removed!</p>`;
           setTimeout(() => renderPosts(userPosts), 2000);
         } else {
           console.log(error);
