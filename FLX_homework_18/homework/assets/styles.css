@@ -232,6 +232,14 @@ button:focus {
 .user-posts__comments--name {
   font-weight: 600;
 }
+.footer {
+  padding: 3rem;
+}
+.footer__copyright {
+  color: #fff;
+  font-size: 1.2rem;
+  text-align: center;
+}
 .btn {
   padding: 0.6rem 4rem;
   text-transform: uppercase;

@@ -1,76 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Permanent+Marker"
-      rel="stylesheet"
-    />
-    <link
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      rel="stylesheet"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="assets/styles.css" />
-    <title>User Dashboard</title>
-  </head>
-  <body>
-    <header class="header">
-      <div class="header__info">
-        <h1 class="header__info--title">My dashboard</h1>
-        <p class="header__info--slogan">FLX training & AJAX HTTP</p>
-      </div>
-      <div class="header__user">
-        <div class="header__user--avatar"><div class="loader"></div></div>
-        <p class="header__user--welcome">Welcome Back, <span></span></p>
-      </div>
-    </header>
-    <main class="main">
-      <div class="main__info">
-        <div class="main__avatar"><div class="loader"></div></div>
-        <div class="main__avatar--info"></div>
-        <div class="change-user">
-          <button class="change-user__previous btn" type="submit">
-            Prev User
-          </button>
-          <button class="change-user__next btn" type="submit">Next User</button>
-        </div>
-      </div>
-      <div class="main__content"></div>
-      <div class="modal">
-        <form method="get" class="modal__form">
-          <div class="modal__form--name">
-            <label for="name">New name:</label>
-            <input type="text" name="name" id="name" />
-          </div>
-          <div class="modal__form--email">
-            <label for="email">New Email: </label>
-            <input type="email" name="email" id="email" />
-          </div>
-          <div class="modal__form--phone">
-            <label for="phone">New Phone: </label>
-            <input name="phone" id="phone" />
-          </div>
-          <div class="modal__form--website">
-            <label for="website">New Website: </label>
-            <input name="website" id="website" />
-          </div>
-          <div class="modal__form--catchprase">
-            <label for="catchprase">New Catchphrase: </label>
-            <input name="catchprase" id="catchphrase" />
-          </div>
-          <div class="form-example">
-            <input class="modal__form--btn btn" type="submit" value="Submit" />
-          </div>
-        </form>
-      </div>
-    </main>
 
-    <footer></footer>
-    <script src="src/xhr.js"></script>
-    <script src="src/app.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet" />
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <title>User Dashboard</title>
+</head>
+
+<body>
+  <header class="header">
+    <div class="header__info">
+      <h1 class="header__info--title">My dashboard</h1>
+      <p class="header__info--slogan">FLX training & AJAX HTTP</p>
+    </div>
+    <div class="header__user">
+      <div class="header__user--avatar">
+        <div class="loader"></div>
+      </div>
+      <p class="header__user--welcome">Welcome Back, <span></span></p>
+    </div>
+  </header>
+  <main class="main">
+    <div class="main__info">
+      <div class="main__avatar">
+        <div class="loader"></div>
+      </div>
+      <div class="main__avatar--info"></div>
+      <div class="change-user">
+        <button class="change-user__previous btn" type="submit">
+          Prev User
+        </button>
+        <button class="change-user__next btn" type="submit">Next User</button>
+      </div>
+    </div>
+    <div class="main__content"></div>
+    <div class="modal">
+      <form method="get" class="modal__form">
+        <div class="modal__form--name">
+          <label for="name">New name:</label>
+          <input type="text" name="name" id="name" />
+        </div>
+        <div class="modal__form--email">
+          <label for="email">New Email: </label>
+          <input type="email" name="email" id="email" />
+        </div>
+        <div class="modal__form--phone">
+          <label for="phone">New Phone: </label>
+          <input name="phone" id="phone" />
+        </div>
+        <div class="modal__form--website">
+          <label for="website">New Website: </label>
+          <input name="website" id="website" />
+        </div>
+        <div class="modal__form--catchprase">
+          <label for="catchphrase">New Catchphrase: </label>
+          <input name="catchphrase" id="catchphrase" />
+        </div>
+        <div class="form-example">
+          <input class="modal__form--btn btn" type="submit" value="Submit" />
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__copyright">
+      &copy; FLX training & AJAX HTTP
+    </div>
+  </footer>
+  <script src="src/xhr.js"></script>
+  <script src="src/app.js"></script>
+</body>
+
 </html>

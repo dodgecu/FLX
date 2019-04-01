@@ -2,7 +2,7 @@
 
 #### Rest API calls to [thecatapi] by utilizing FETCH
 
-####[demo]
+#### [demo]
 
 [json]: https://github.com/typicode/json-server
 [thecatapi]: https://thecatapi.com/

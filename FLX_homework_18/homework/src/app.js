@@ -1,12 +1,12 @@
 // Instantiate XHR , TheCatAPI key
 const xhr = new XHR();
-const api_key_cats = "be03bfc4-8d3a-4a3e-8c40-d2a1a7c687db";
+const api_key_cats = 'be03bfc4-8d3a-4a3e-8c40-d2a1a7c687db';
 
 // Bring cats by using FETCH api
-const fetchCat = async function(api) {
+const fetchCat = async function (api) {
   const res = await fetch(api, {
     headers: {
-      ["x-api-key"]: api_key_cats
+      ['x-api-key']: api_key_cats
     }
   });
   const data = await res.json();
@@ -15,14 +15,12 @@ const fetchCat = async function(api) {
 
 // Call fetch on cats api
 function getNewCat() {
-  fetchCat(
-    `https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg%2C%20png`
-  )
+  fetchCat(`https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg%2C%20png`)
     .then(data => getCat(data))
     .catch(err => console.error(err));
 }
 
-xhr.get("https://jsonplaceholder.typicode.com/users", getUsers);
+xhr.get(`https://jsonplaceholder.typicode.com/users`, getUsers);
 
 // Globals
 let userId = 0;
@@ -33,39 +31,39 @@ let nextPostBtn;
 let prevPostBtn;
 let postTitle;
 let postBody;
-const nextBtn = document.querySelector(".change-user__next");
-const prevBtn = document.querySelector(".change-user__previous");
+const nextBtn = document.querySelector('.change-user__next');
+const prevBtn = document.querySelector('.change-user__previous');
 prevBtn.disabled = true;
-const mainPostArea = document.querySelector(".main__content");
-const mainUserArea = document.querySelector(".main__info");
-const loader = document.querySelectorAll(".loader");
-const userTitle = document.querySelector(".header__user--welcome span");
-const mainInfo = document.querySelector(".main__avatar--info");
-mainUserArea.addEventListener("click", next);
-mainUserArea.addEventListener("click", loadPosts);
-mainUserArea.addEventListener("click", editUser);
-mainUserArea.addEventListener("click", deleteUser);
-mainPostArea.addEventListener("click", submitPost);
-mainPostArea.addEventListener("click", getComments);
-mainPostArea.addEventListener("click", nextPost);
-mainPostArea.addEventListener("click", editPost);
-mainPostArea.addEventListener("click", deletePost);
+const mainPostArea = document.querySelector('.main__content');
+const mainUserArea = document.querySelector('.main__info');
+const loader = document.querySelectorAll('.loader');
+const userTitle = document.querySelector('.header__user--welcome span');
+const mainInfo = document.querySelector('.main__avatar--info');
+mainUserArea.addEventListener('click', next);
+mainUserArea.addEventListener('click', loadPosts);
+mainUserArea.addEventListener('click', editUser);
+mainUserArea.addEventListener('click', deleteUser);
+mainPostArea.addEventListener('click', submitPost);
+mainPostArea.addEventListener('click', getComments);
+mainPostArea.addEventListener('click', nextPost);
+mainPostArea.addEventListener('click', editPost);
+mainPostArea.addEventListener('click', deletePost);
 
 // Modal
-const modal = document.querySelector(".modal");
-const modalName = document.getElementById("name");
-const modalEmail = document.getElementById("email");
-const modalPhone = document.getElementById("phone");
-const modalWebsite = document.getElementById("website");
-const modalCatchPhrase = document.getElementById("catchphrase");
+const modal = document.querySelector('.modal');
+const modalName = document.getElementById('name');
+const modalEmail = document.getElementById('email');
+const modalPhone = document.getElementById('phone');
+const modalWebsite = document.getElementById('website');
+const modalCatchPhrase = document.getElementById('catchphrase');
 
 // Alert
 function showAlert(message) {
-  const p = document.createElement("p");
-  p.className = "alert";
+  const p = document.createElement('p');
+  p.className = 'alert';
   p.textContent = message;
   mainPostArea.appendChild(p);
-  setTimeout(() => (p.style.display = "none"), 2000);
+  setTimeout(() => (p.style.display = 'none'), 2000);
 }
 
 // Get all users
@@ -92,7 +90,7 @@ function renderUser(data) {
   } = data;
   mainPostArea.innerHTML = ``;
   userTitle.innerHTML = username;
-  mainInfo.setAttribute("data-user-id", id);
+  mainInfo.setAttribute('data-user-id', id);
   mainInfo.innerHTML = `
   <div class="customize-user">
     <a href="#" class="customize-user__edit">
@@ -126,8 +124,8 @@ function renderUser(data) {
 
 // Edit user
 function editUser(e) {
-  if (e.target.classList.contains("fa-pencil-square-o")) {
-    modal.style.display = "block";
+  if (e.target.classList.contains('fa-pencil-square-o')) {
+    modal.style.display = 'block';
     const {
       name,
       email,
@@ -142,8 +140,8 @@ function editUser(e) {
     modalCatchPhrase.value = catchPhrase;
   }
   document
-    .querySelector(".modal__form")
-    .addEventListener("submit", submitUserChanges);
+    .querySelector('.modal__form')
+    .addEventListener('submit', submitUserChanges);
   e.preventDefault();
 }
 
@@ -162,15 +160,15 @@ function submitUserChanges(e) {
     data,
     (error, success) => {
       if (success) {
-        modal.style.display = "none";
+        modal.style.display = 'none';
         const result = JSON.parse(success);
-        showAlert("User successfully updated");
         users[userId].name = result.name;
         users[userId].email = result.email;
         users[userId].phone = result.phone;
         users[userId].website = result.website;
         users[userId].company.catchPhrase = result.catchPhrase;
         renderUser(users[userId]);
+        showAlert('User successfully updated');
       } else {
         console.log(error);
       }
@@ -182,7 +180,7 @@ function submitUserChanges(e) {
 
 // Delete User
 function deleteUser(e) {
-  if (e.target.classList.contains("fa-trash")) {
+  if (e.target.classList.contains('fa-trash')) {
     const dataUserId = mainInfo.dataset.userId;
     xhr.delete(
       `https://jsonplaceholder.typicode.com/users/${dataUserId}`,
@@ -194,7 +192,7 @@ function deleteUser(e) {
           setTimeout(() => {
             renderUser(users[userId]);
             getNewCat();
-            loader.forEach(loader => (loader.style.display = "block"));
+            loader.forEach(loader => (loader.style.display = 'block'));
           }, 2000);
         } else {
           console.log(error);
@@ -206,20 +204,20 @@ function deleteUser(e) {
 
 // Change between loaded users
 function next(e) {
-  if (e.target.classList.contains("change-user__next")) {
+  if (e.target.classList.contains('change-user__next')) {
     getNewCat();
     userId++;
     prevBtn.disabled = false;
-    loader.forEach(loader => (loader.style.display = "block"));
+    loader.forEach(loader => (loader.style.display = 'block'));
     if (userId >= users.length - 1) {
       nextBtn.disabled = true;
     }
   }
-  if (e.target.classList.contains("change-user__previous")) {
+  if (e.target.classList.contains('change-user__previous')) {
     getNewCat();
     userId--;
     nextBtn.disabled = false;
-    loader.forEach(loader => (loader.style.display = "block"));
+    loader.forEach(loader => (loader.style.display = 'block'));
     if (userId === 0) {
       prevBtn.disabled = true;
     }
@@ -245,7 +243,7 @@ function getPosts() {
 // Render Add Post UI
 function loadPosts(e) {
   postId = 0;
-  if (e.target.className === "primary__name") {
+  if (e.target.className === 'primary__name') {
     getPosts();
     mainPostArea.innerHTML = `
     <div class="form">
@@ -285,7 +283,7 @@ function loadPosts(e) {
 
 // Display posts list
 function renderPosts(postData) {
-  const postsBlock = document.querySelector(".user-posts");
+  const postsBlock = document.querySelector('.user-posts');
   const { id, title, body } = postData[postId];
   postsBlock.innerHTML = `
   <article class="user-posts__item" data-id = ${id}>
@@ -299,22 +297,22 @@ function renderPosts(postData) {
 function showPosts(posts) {
   userPosts.length = 0;
   userPosts = userPosts.concat(posts);
-  nextPostBtn = document.querySelector(".change-post__next");
-  prevPostBtn = document.querySelector(".change-post__previous");
+  nextPostBtn = document.querySelector('.change-post__next');
+  prevPostBtn = document.querySelector('.change-post__previous');
   prevPostBtn.disabled = true;
   renderPosts(userPosts);
 }
 
 // Change between posts
 function nextPost(e) {
-  if (e.target.classList.contains("change-post__next")) {
+  if (e.target.classList.contains('change-post__next')) {
     postId++;
     prevPostBtn.disabled = false;
     if (postId >= userPosts.length - 1) {
       nextPostBtn.disabled = true;
     }
   }
-  if (e.target.classList.contains("change-post__previous")) {
+  if (e.target.classList.contains('change-post__previous')) {
     postId--;
     nextPostBtn.disabled = false;
     if (postId === 0) {
@@ -326,8 +324,8 @@ function nextPost(e) {
 
 // Get comments from API
 function getComments(e) {
-  const dataPostId = document.querySelector(".user-posts__item").dataset.id;
-  if (e.target.classList.contains("show-comments")) {
+  const dataPostId = document.querySelector('.user-posts__item').dataset.id;
+  if (e.target.classList.contains('show-comments')) {
     xhr.get(
       `https://jsonplaceholder.typicode.com/comments?postId=${dataPostId}`,
       (error, success) => {
@@ -343,13 +341,13 @@ function getComments(e) {
 
 // Render comments
 function renderComments(comments) {
-  const postsBlock = document.querySelector(".user-posts");
+  const postsBlock = document.querySelector('.user-posts');
   for (let comment of comments) {
     postsBlock.innerHTML += `
       <div class="user-posts__comments">
         <h4 class="user-posts__comments--email">Comment from: ${
-          comment.email
-        }</h4>
+      comment.email
+      }</h4>
         <p class="user-posts__comments--name">Comment name: ${comment.name}</p>
         <p class="user-posts__comments--comment">Body: ${comment.body}</p>
       </div>
@@ -359,11 +357,11 @@ function renderComments(comments) {
 
 // Add new post
 function submitPost(e) {
-  if (e.target.classList.contains("btn__add")) {
-    postTitle = document.getElementById("title");
-    postBody = document.getElementById("body");
+  if (e.target.classList.contains('btn__add')) {
+    postTitle = document.getElementById('title');
+    postBody = document.getElementById('body');
     const dataUserId = mainInfo.dataset.userId;
-    if (postBody.value.trim() !== "" && postTitle.value.trim() !== "") {
+    if (postBody.value.trim() !== '' && postTitle.value.trim() !== '') {
       const data = {
         userId: dataUserId,
         title: postTitle.value,
@@ -375,8 +373,8 @@ function submitPost(e) {
         data,
         (error, result) => {
           if (result) {
-            postTitle.value = "";
-            postBody.value = "";
+            postTitle.value = '';
+            postBody.value = '';
             showAlert(`Post successfully added!`);
           }
           if (error) {
@@ -392,27 +390,27 @@ function submitPost(e) {
 
 // Edit post UI
 function editPost(e) {
-  if (e.target.classList.contains("fa-pencil")) {
-    const editBtn = document.querySelector(".form__btn");
-    postTitle = document.getElementById("title");
-    postBody = document.getElementById("body");
-    editBtn.textContent = "Update Post";
-    editBtn.classList.remove("btn__add");
-    editBtn.classList.add("btn__update");
+  if (e.target.classList.contains('fa-pencil')) {
+    const editBtn = document.querySelector('.form__btn');
+    postTitle = document.getElementById('title');
+    postBody = document.getElementById('body');
+    editBtn.textContent = 'Update Post';
+    editBtn.classList.remove('btn__add');
+    editBtn.classList.add('btn__update');
     postTitle.value = userPosts[postId].title;
     postBody.value = userPosts[postId].body;
-    mainPostArea.addEventListener("click", submitCustomizedPost);
+    mainPostArea.addEventListener('click', submitCustomizedPost);
   }
   e.preventDefault();
 }
 
 // Submit customized post to the API
 function submitCustomizedPost(e) {
-  if (e.target.classList.contains("btn__update")) {
-    postTitle = document.getElementById("title");
-    postBody = document.getElementById("body");
-    const dataPostId = document.querySelector(".user-posts__item").dataset.id;
-    if (postBody.value.trim() !== "" && postTitle.value.trim() !== "") {
+  if (e.target.classList.contains('btn__update')) {
+    postTitle = document.getElementById('title');
+    postBody = document.getElementById('body');
+    const dataPostId = document.querySelector('.user-posts__item').dataset.id;
+    if (postBody.value.trim() !== '' && postTitle.value.trim() !== '') {
       const data = {
         userId: userId + 1,
         id: dataPostId,
@@ -426,13 +424,13 @@ function submitCustomizedPost(e) {
           if (success) {
             const result = JSON.parse(success);
             userPosts.splice(postId, 1, result);
-            postTitle.value = "";
-            postBody.value = "";
+            postTitle.value = '';
+            postBody.value = '';
             renderPosts(userPosts);
-            const editBtn = document.querySelector(".form__btn");
-            editBtn.textContent = "Post It";
-            editBtn.classList.remove("btn__update");
-            editBtn.classList.add("btn__add");
+            const editBtn = document.querySelector('.form__btn');
+            editBtn.textContent = 'Post It';
+            editBtn.classList.remove('btn__update');
+            editBtn.classList.add('btn__add');
             showAlert(`Post successfully updated!`);
           } else {
             console.error(error);
@@ -447,8 +445,8 @@ function submitCustomizedPost(e) {
 
 // Delete Post
 function deletePost(e) {
-  if (e.target.classList.contains("fa-remove")) {
-    const dataPostId = document.querySelector(".user-posts__item").dataset.id;
+  if (e.target.classList.contains('fa-remove')) {
+    const dataPostId = document.querySelector('.user-posts__item').dataset.id;
     xhr.delete(
       `https://jsonplaceholder.typicode.com/posts/${dataPostId}`,
       (error, success) => {
@@ -456,7 +454,7 @@ function deletePost(e) {
           userPosts.splice(postId, 1);
           postId === 0 ? postId : postId--;
           document.querySelector(
-            ".user-posts__item"
+            '.user-posts__item'
           ).innerHTML = `<p class="user-posts__removed">Post Successfully Removed!</p>`;
           setTimeout(() => renderPosts(userPosts), 2000);
         } else {
@@ -469,16 +467,16 @@ function deletePost(e) {
 
 // Get cats
 function getCat(cats) {
-  const topAvatar = document.querySelector(".header__user--avatar");
-  const mainAvatar = document.querySelector(".main__avatar");
+  const topAvatar = document.querySelector('.header__user--avatar');
+  const mainAvatar = document.querySelector('.main__avatar');
   const image = new Image();
   cats.forEach(cat => {
-    image.onload = function() {
+    image.onload = function () {
       mainAvatar.style.backgroundImage = `url('${image.src}')`;
       topAvatar.style.backgroundImage = `url('${image.src}')`;
-      loader.forEach(loader => (loader.style.display = "none"));
+      loader.forEach(loader => (loader.style.display = 'none'));
     };
     image.src = cat.url;
   });
 }
-document.addEventListener("DOMContentLoaded", getNewCat);
+document.addEventListener('DOMContentLoaded', getNewCat);
