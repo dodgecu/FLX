@@ -377,11 +377,11 @@ function renderComments(comments) {
 // Add new post
 function submitPost(e) {
   if (e.target.classList.contains('btn__add')) {
-    bodyLoader.style.display = 'block';
     postTitle = document.getElementById('title');
     postBody = document.getElementById('body');
     const dataUserId = mainInfo.dataset.userId;
     if (postBody.value.trim() !== '' && postTitle.value.trim() !== '') {
+      bodyLoader.style.display = 'block';
       const data = {
         userId: parseInt(dataUserId),
         title: postTitle.value,
@@ -431,11 +431,11 @@ function editPost(e) {
 // Submit customized post to the API (ONLY EXISTING POSTS CAN BE EDITED). Returns error when editing new since data is not persisted
 function submitCustomizedPost(e) {
   if (e.target.classList.contains('btn__update')) {
-    bodyLoader.style.display = 'block';
     postTitle = document.getElementById('title');
     postBody = document.getElementById('body');
     const dataPostId = document.querySelector('.user-posts__item').dataset.id;
     if (postBody.value.trim() !== '' && postTitle.value.trim() !== '') {
+      bodyLoader.style.display = 'block';
       const data = {
         userId: userId + 1,
         id: dataPostId,
