@@ -37,6 +37,7 @@ prevBtn.disabled = true;
 const mainPostArea = document.querySelector('.main__content');
 const mainUserArea = document.querySelector('.main__info');
 const loader = document.querySelectorAll('.loader');
+const bodyLoader = document.querySelector('.body__loader');
 const userTitle = document.querySelector('.header__user--welcome span');
 const mainInfo = document.querySelector('.main__avatar--info');
 mainUserArea.addEventListener('click', next);
@@ -50,7 +51,7 @@ mainPostArea.addEventListener('click', editPost);
 mainPostArea.addEventListener('click', deletePost);
 
 // Modal
-const modal = document.querySelector('.modal');
+const modal = document.getElementById('modal');
 const modalName = document.getElementById('name');
 const modalEmail = document.getElementById('email');
 const modalPhone = document.getElementById('phone');
@@ -125,7 +126,8 @@ function renderUser(data) {
 // Edit user
 function editUser(e) {
   if (e.target.classList.contains('fa-pencil-square-o')) {
-    modal.style.display = 'block';
+    modal.classList.remove("modal__closed");
+    modal.classList.add("modal__open");
     const {
       name,
       email,
@@ -139,14 +141,25 @@ function editUser(e) {
     modalWebsite.value = website;
     modalCatchPhrase.value = catchPhrase;
   }
-  document
-    .querySelector('.modal__form')
+  document.querySelector('.modal__form')
     .addEventListener('submit', submitUserChanges);
+  document.querySelector('.modal__form').addEventListener("click", cancelEdit)
   e.preventDefault();
+}
+
+
+//Cancel User Edit
+function cancelEdit(e) {
+  if (e.target.classList.contains('modal__form--cancel')) {
+    modal.classList.remove("modal__open");
+    modal.classList.add("modal__closed");
+    showAlert('Cancelled!')
+  }
 }
 
 // Submit edited user
 function submitUserChanges(e) {
+  bodyLoader.style.display = 'block';
   const dataUserId = mainInfo.dataset.userId;
   const data = {
     name: modalName.value,
@@ -159,17 +172,20 @@ function submitUserChanges(e) {
     data,
     (error, success) => {
       if (success) {
-        modal.style.display = 'none';
         const result = JSON.parse(success);
         users[userId].name = result.name;
         users[userId].email = result.email;
         users[userId].phone = result.phone;
         users[userId].website = result.website;
         users[userId].company.catchPhrase = result.catchPhrase;
+        modal.classList.remove("modal__open");
+        modal.classList.add("modal__closed");
         renderUser(users[userId]);
         showAlert('User successfully updated');
+        bodyLoader.style.display = 'none';
       } else {
         console.log(error);
+        bodyLoader.style.display = 'none';
       }
     }
   );
@@ -180,6 +196,7 @@ function submitUserChanges(e) {
 // Delete User
 function deleteUser(e) {
   if (e.target.classList.contains('fa-trash')) {
+    bodyLoader.style.display = 'block';
     const dataUserId = mainInfo.dataset.userId;
     xhr.delete(`https://jsonplaceholder.typicode.com/users/${dataUserId}`,
       (error, success) => {
@@ -187,12 +204,14 @@ function deleteUser(e) {
           users.splice(userId, 1);
           userId === 0 ? userId : userId--;
           mainInfo.innerHTML = `User successfully removed!`;
+          bodyLoader.style.display = 'none';
           setTimeout(() => {
             renderUser(users[userId]);
             getNewCat();
             loader.forEach(loader => (loader.style.display = 'block'));
           }, 2000);
         } else {
+          bodyLoader.style.display = 'none';
           console.log(error);
         }
       }
@@ -226,12 +245,15 @@ function next(e) {
 // Get Posts from API
 function getPosts() {
   const dataUserId = mainInfo.dataset.userId;
+  bodyLoader.style.display = 'block';
   xhr.get(`https://jsonplaceholder.typicode.com/posts?userId=${dataUserId}`,
     (error, success) => {
       if (success) {
         showPosts(success);
+        bodyLoader.style.display = 'none';
       } else {
         console.error(error);
+        bodyLoader.style.display = 'none';
       }
     }
   );
@@ -323,12 +345,15 @@ function nextPost(e) {
 function getComments(e) {
   const dataPostId = document.querySelector('.user-posts__item').dataset.id;
   if (e.target.classList.contains('show-comments')) {
+    bodyLoader.style.display = 'block';
     xhr.get(`https://jsonplaceholder.typicode.com/comments?postId=${dataPostId}`,
       (error, success) => {
         if (success) {
           renderComments(success);
+          bodyLoader.style.display = 'none';
         } else {
           console.log(error);
+          bodyLoader.style.display = 'none';
         }
       }
     );
@@ -352,6 +377,7 @@ function renderComments(comments) {
 // Add new post
 function submitPost(e) {
   if (e.target.classList.contains('btn__add')) {
+    bodyLoader.style.display = 'block';
     postTitle = document.getElementById('title');
     postBody = document.getElementById('body');
     const dataUserId = mainInfo.dataset.userId;
@@ -369,8 +395,10 @@ function submitPost(e) {
             postTitle.value = '';
             postBody.value = '';
             showAlert(`Post successfully added!`);
+            bodyLoader.style.display = 'none';
           } else {
             console.log(error);
+            bodyLoader.style.display = 'none';
           }
         }
       );
@@ -403,6 +431,7 @@ function editPost(e) {
 // Submit customized post to the API (ONLY EXISTING POSTS CAN BE EDITED). Returns error when editing new since data is not persisted
 function submitCustomizedPost(e) {
   if (e.target.classList.contains('btn__update')) {
+    bodyLoader.style.display = 'block';
     postTitle = document.getElementById('title');
     postBody = document.getElementById('body');
     const dataPostId = document.querySelector('.user-posts__item').dataset.id;
@@ -427,8 +456,10 @@ function submitCustomizedPost(e) {
             editBtn.classList.remove('btn__update');
             editBtn.classList.add('btn__add');
             showAlert(`Post successfully updated!`);
+            bodyLoader.style.display = 'none';
           } else {
             console.log(error);
+            bodyLoader.style.display = 'none';
           }
         }
       );
@@ -441,6 +472,7 @@ function submitCustomizedPost(e) {
 // Delete Post
 function deletePost(e) {
   if (e.target.classList.contains('fa-remove')) {
+    bodyLoader.style.display = 'block';
     const dataPostId = document.querySelector('.user-posts__item').dataset.id;
     xhr.delete(`https://jsonplaceholder.typicode.com/posts/${dataPostId}`,
       (error, success) => {
@@ -449,9 +481,11 @@ function deletePost(e) {
           postId === 0 ? postId : postId--;
           document.querySelector('.user-posts__item')
             .innerHTML = `<p class="user-posts__removed">Post Successfully Removed!</p>`;
+          bodyLoader.style.display = 'none';
           setTimeout(() => renderPosts(userPosts), 2000);
         } else {
           console.log(error);
+          bodyLoader.style.display = 'none';
         }
       }
     );
