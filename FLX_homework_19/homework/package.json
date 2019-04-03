@@ -1,0 +1,30 @@
+{
+  "name": "toolshw",
+  "version": "1.0.0",
+  "description": "Tools hoemwork. Gulp, Yarn. FLX, epam 2019.",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp",
+    "server": "gulp server"
+  },
+  "repository": "https://github.com/dodgecu/FLX",
+  "author": "Pavlo Pihula",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "browser-sync": "^2.26.3",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-cli": "^2.1.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-image": "^4.4.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "gulp-uglifycss": "^1.1.0",
+    "node-sass": "^4.11.0"
+  },
+  "dependencies": {}
+}

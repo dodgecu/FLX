@@ -1,5 +1,4 @@
 .DS_Store
-bootstrap.min.css
-critical-styles.css
-font-awesome.min.css
+node_modules
+
 
