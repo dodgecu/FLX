@@ -6,7 +6,7 @@ const browserSync = require("browser-sync").create();
 const concat = require("gulp-concat");
 const babel = require("gulp-babel");
 const uglify = require("gulp-uglify");
-const image = require("gulp-image");
+const imagemin = require("gulp-imagemin");
 
 const sync = () => {
   browserSync.init({
@@ -50,11 +50,10 @@ const js = () => {
     .pipe(browserSync.reload({ stream: true }));
 };
 
-// gulp-image requires external dependencies libjpeg libpng
 const compressImages = () => {
-  return src("./src/img/*")
-    .pipe(image())
-    .pipe(dest("./dist/img/"));
+  return src("src/img/*")
+    .pipe(imagemin())
+    .pipe(dest("dist/img"));
 };
 
 task("default", series(scssTask, minifyHTML, js, compressImages));
