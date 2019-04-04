@@ -3434,16 +3434,6 @@ gulp-uglify@^3.0.2:
     uglify-js "^3.0.5"
     vinyl-sourcemaps-apply "^0.2.0"
 
-gulp-uglifycss@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/gulp-uglifycss/-/gulp-uglifycss-1.1.0.tgz#95ba1ff6cbd046edfa1c074de477a9bea4410a1a"
-  integrity sha512-O2VDBPdS16SO3BPSCsHDnsvdCx1B/WgH2qvJaUOD+r1d8v87UjeqEtfmqR2eJ171D0F4shw8/oW5ezA6pqVXEQ==
-  dependencies:
-    plugin-error "^1.0.1"
-    through2 "^2.0.3"
-    uglifycss "^0.0.25"
-    vinyl "^2.1.0"
-
 gulp-util@^3.0.1:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
@@ -6874,11 +6864,6 @@ uglify-js@^3.0.5:
     commander "~2.19.0"
     source-map "~0.6.1"
 
-uglifycss@^0.0.25:
-  version "0.0.25"
-  resolved "https://registry.yarnpkg.com/uglifycss/-/uglifycss-0.0.25.tgz#bea72bf4979eacef13a302cf47b2d1af3f344197"
-  integrity sha1-vqcr9JeerO8TowLPR7LRrz80QZc=
-
 ultron@~1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ultron/-/ultron-1.1.1.tgz#9fe1536a10a664a65266a1e3ccf85fd36302bc9c"
@@ -7201,7 +7186,7 @@ vinyl@^1.0.0:
     clone-stats "^0.0.1"
     replace-ext "0.0.1"
 
-vinyl@^2.0.0, vinyl@^2.1.0:
+vinyl@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/vinyl/-/vinyl-2.2.0.tgz#d85b07da96e458d25b2ffe19fece9f2caa13ed86"
   integrity sha512-MBH+yP0kC/GQ5GwBqrTPTzEfiiLjta7hTtvQtbxBgTeSXsmKQRQecjibMbxIXzVT3Y9KJK+drOz1/k+vsu8Nkg==

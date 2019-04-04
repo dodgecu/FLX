@@ -1,0 +1,10 @@
+.game {
+  &__play {
+    @include button-animated();
+    margin: 4rem auto;
+  }
+  &__reset {
+    @include button-animated();
+    margin: 4rem auto;
+  }
+}

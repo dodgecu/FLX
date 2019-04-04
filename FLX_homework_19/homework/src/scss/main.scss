@@ -1,10 +1,14 @@
-$font-stack: Helvetica, sans-serif;
-$primary-color: green;
+@import "abstracts/variables";
+@import "abstracts/mixins";
 
-body {
-  font: 100% $font-stack;
-  color: $primary-color;
-}
-h1 {
-  color: $primary-color;
-}
+@import "base/base";
+@import "base/animations";
+
+@import "layouts/header";
+@import "layouts/main";
+@import "layouts/footer";
+
+@import "components/rules";
+@import "components/playbtn";
+@import "components/options";
+@import "components/results";
