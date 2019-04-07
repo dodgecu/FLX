@@ -12,13 +12,13 @@ class UI {
       </div>
       <div class="options">
         <div class="options__paper" data-option="paper">
-          <img src="../img/paper.png" alt="" />
+          <img src="./img/paper.png" alt="" />
         </div>
         <div class="options__scissors" data-option="scissors">
-          <img src="../img/scissors.png" alt="" />
+          <img src="./img/scissors.png" alt="" />
         </div>
         <div class="options__rock" data-option="rock">
-          <img src="../img/rock.png" alt="" />
+          <img src="./img/rock.png" alt="" />
         </div>
       </div>
     </div>
