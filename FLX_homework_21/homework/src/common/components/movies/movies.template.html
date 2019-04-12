@@ -1,0 +1,36 @@
+<div class="search">
+  <label for="search-movie" class="search__label">Find your movie</label>
+  <input
+    id="search-movie"
+    type="text"
+    placeholder="Search movie"
+    ng-model="searchMovie"
+    class="search__input"
+  />
+</div>
+
+<div class="movies">
+  <a
+    ng-repeat="movie in $ctrl.movies | filter:searchMovie track by $index"
+    class="movies__overview"
+    fresh-movie
+    ui-sref="movie-info({ movieId: movie.id })"
+  >
+    <h2>{{ movie.title }}</h2>
+    <div class="movies__info">
+      <img src="{{ movie.poster_path }}" alt="{{ movie.title }}" />
+      <div class="movies__details">
+        <p class="movies__details--overview">
+          {{ movie.overview ? movie.overview : 'No description available' }}
+        </p>
+        <p class="movies__details--budget">Budget: {{ movie.budget }}</p>
+        <p class="movies__details--ravenue">Ravenue: {{ movie.revenue }}</p>
+        <ul class="genres">
+          <li ng-repeat="genre in movie.genres" class="genres__genre">
+            {{ genre }} /
+          </li>
+        </ul>
+      </div>
+    </div>
+  </a>
+</div>
