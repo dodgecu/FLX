@@ -18,7 +18,7 @@
   >
     <h2>{{ movie.title }}</h2>
     <div class="movies__info">
-      <img src="{{ movie.poster_path }}" alt="{{ movie.title }}" />
+      <img ng-src="{{ movie.poster_path }}" alt="{{ movie.title }}" />
       <div class="movies__details">
         <p class="movies__details--overview">
           {{ movie.overview ? movie.overview : 'No description available' }}
