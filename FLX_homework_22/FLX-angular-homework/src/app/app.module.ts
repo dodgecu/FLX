@@ -9,6 +9,7 @@ import { EmployeeSearchPipe } from './components/employees/employee.pipe';
 import { EmployeeInstanceComponent } from './components/employee-instance/employee-instance.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewEmployeeComponent } from './components/view-employee/view-employee.component';
 import { EditEmployeeComponent } from './components/edit-employee/edit-employee.component';
 
@@ -27,7 +28,8 @@ import { EditEmployeeComponent } from './components/edit-employee/edit-employee.
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

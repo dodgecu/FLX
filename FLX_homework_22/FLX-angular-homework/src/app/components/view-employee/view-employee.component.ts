@@ -20,7 +20,7 @@ export class ViewEmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
-      this.id = parseInt(params['id']);
+      this.id = parseInt(params.id, 10);
     });
     this.employee = this.employeeService
       .getEmployees()

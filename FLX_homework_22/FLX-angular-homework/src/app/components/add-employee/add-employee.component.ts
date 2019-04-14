@@ -21,21 +21,21 @@ export class AddEmployeeComponent implements OnInit {
     private employeeService: EmployeeService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.city = 'london';
     this.gender = '2';
     this.age = 16;
   }
 
-  addEmployee() {
-    const gender: number = parseInt(this.gender);
+  addEmployee(): void {
+    const employeeGender: number = parseInt(this.gender, 10);
     const employee = {
       id: new Date().valueOf(),
       firstName: this.firstName,
       lastName: this.lastName,
       age: this.age,
       city: this.city,
-      gender: gender,
+      gender: employeeGender,
       description: this.description
     };
     this.employeeService.addEmployees(employee);

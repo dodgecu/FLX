@@ -9,7 +9,9 @@
   *ngIf="
     router.url !== '/employees' &&
     router.url !== '/employee/create' &&
-    !router.url.includes('edit')">
+    !router.url.includes('edit')
+  "
+>
   View employee details
 </h2>
 <h2 class="main__header edit" *ngIf="router.url.includes('edit')">

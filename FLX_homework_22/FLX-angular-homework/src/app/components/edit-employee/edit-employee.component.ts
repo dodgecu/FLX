@@ -26,9 +26,9 @@ export class EditEmployeeComponent implements OnInit {
     private employeeService: EmployeeService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
-      this.id = parseInt(params['id']);
+      this.id = parseInt(params.id, 10);
     });
     this.employee = this.employeeService
       .getEmployees()
@@ -49,15 +49,15 @@ export class EditEmployeeComponent implements OnInit {
     this.description = description;
   }
 
-  submitEdits() {
-    const gender: number = parseInt(this.gender);
+  submitEdits(): void {
+    const employeeGender: number = parseInt(this.gender, 10);
     const employee = {
       id: this.id,
       firstName: this.firstName,
       lastName: this.lastName,
       age: this.age,
       city: this.city,
-      gender: gender,
+      gender: employeeGender,
       description: this.description
     };
     this.index = this.employeeService.getEmployees().indexOf(this.employee[0]);
