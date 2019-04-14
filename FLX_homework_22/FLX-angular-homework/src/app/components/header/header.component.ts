@@ -9,12 +9,7 @@ import { Router, Event, NavigationEnd } from '@angular/router';
 export class HeaderComponent implements OnInit {
   routeId: string;
 
-  constructor(private router: Router) {
-    this.router.events.subscribe((url: Event) => {
-      if (url instanceof NavigationEnd) {
-      }
-    });
-  }
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 }

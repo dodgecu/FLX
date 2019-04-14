@@ -3,8 +3,7 @@
     <div *ngFor="let employee of (employees | employeeSearch: searchTerm)">
       <app-employee-instance
         [employee]="employee"
-        (deleteEmployee)="deleteEmployee($event)"
-      >
+        (deleteEmployee)="deleteEmployee($event)">
       </app-employee-instance>
     </div>
   </div>
@@ -13,13 +12,11 @@
       class="employees__search--field"
       type="text"
       placeholder="Search..."
-      [(ngModel)]="searchTerm"
-    />
+      [(ngModel)]="searchTerm"/>
     <button
       type="button"
       class="employees__search--add"
-      [routerLink]="['/employee/create']"
-    >
+      [routerLink]="['/employee/create']">
       <i class="fa fa-plus-circle"></i>
     </button>
   </div>
