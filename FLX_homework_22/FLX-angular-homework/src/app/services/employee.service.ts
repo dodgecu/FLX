@@ -54,15 +54,15 @@ export class EmployeeService {
     return this.employees;
   }
 
-  addEmployees(employee: Employee) {
+  addEmployees(employee: Employee): void {
     this.employees.push(employee);
   }
 
-  deleteEmployee(id: number) {
+  deleteEmployee(id: number): void {
     this.employees.splice(id, 1);
   }
 
-  submitEdited(id: number, data: Employee) {
+  submitEdited(id: number, data: Employee): void {
     this.employees.splice(id, 1, data);
   }
 }
