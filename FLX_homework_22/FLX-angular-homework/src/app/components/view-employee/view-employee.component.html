@@ -1,0 +1,37 @@
+<button type="text" class="back" [routerLink]="['/employees']">
+  <i class="fa fa-long-arrow-left"></i>
+</button>
+<ul class="employee-details">
+  <li class="employee-details__info">
+    <p class="employee-details--label">First name</p>
+    <p class="employee-details--value">{{ employee[0].firstName }}</p>
+  </li>
+  <li class="employee-details__info">
+    <p class="employee-details--label">Last name</p>
+    <p class="employee-details--value">{{ employee[0].lastName }}</p>
+  </li>
+  <li class="employee-details__info">
+    <p class="employee-details--label">City</p>
+    <p class="employee-details--value">{{ employee[0].city }}</p>
+  </li>
+  <li class="employee-details__info">
+    <p class="employee-details--label">Age</p>
+    <p class="employee-details--value">{{ employee[0].age }}</p>
+  </li>
+</ul>
+<div class="emploee-summary">
+  <p class="emploee-summary--label">Summary</p>
+  <p class="emploee-summary--value">{{ employee[0].description }}</p>
+</div>
+<div class="edit-controls">
+  <button
+    type="text"
+    class="edit-controls__edit"
+    [routerLink]="['/edit', employee[0].id]"
+  >
+    <i class="fa fa-pencil"></i>
+  </button>
+  <button type="text" class="edit-controls__remove" (click)="onDelete()">
+    <i class="fa fa-trash-o"></i>
+  </button>
+</div>

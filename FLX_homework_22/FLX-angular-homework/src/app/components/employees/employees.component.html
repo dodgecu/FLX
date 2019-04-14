@@ -1,0 +1,26 @@
+<div class="employees">
+  <div class="employees__list">
+    <div *ngFor="let employee of (employees | employeeSearch: searchTerm)">
+      <app-employee-instance
+        [employee]="employee"
+        (deleteEmployee)="deleteEmployee($event)"
+      >
+      </app-employee-instance>
+    </div>
+  </div>
+  <div class="employees__search">
+    <input
+      class="employees__search--field"
+      type="text"
+      placeholder="Search..."
+      [(ngModel)]="searchTerm"
+    />
+    <button
+      type="button"
+      class="employees__search--add"
+      [routerLink]="['/employee/create']"
+    >
+      <i class="fa fa-plus-circle"></i>
+    </button>
+  </div>
+</div>

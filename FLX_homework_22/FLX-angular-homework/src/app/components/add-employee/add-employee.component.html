@@ -1,0 +1,139 @@
+<form
+  class="add-employee"
+  (ngSubmit)="addEmployee($event)"
+  #employeeForm="ngForm"
+>
+  <div class="add-employee__form-fields">
+    <label for="firstName">First Name:</label>
+    <input
+      class="employee-data firstName"
+      type="text"
+      name="firstName"
+      id="firstName"
+      [(ngModel)]="firstName"
+      placeholder="Enter first name"
+      required
+      maxlength="50"
+      #firstNameControl="ngModel"
+      [class.erroneous]="firstNameControl.invalid && firstNameControl.touched"
+    />
+    <span
+      class="invalid-error"
+      *ngIf="firstNameControl.invalid && firstNameControl.touched"
+      >First name invalid</span
+    >
+    <label for="lastName">Last Name:</label>
+    <input
+      class="employee-data lastName"
+      type="text"
+      name="lastName"
+      id="lastName"
+      [(ngModel)]="lastName"
+      placeholder="Enter last name"
+      required
+      maxlength="50"
+      #lastNameControl="ngModel"
+      [class.erroneous]="lastNameControl.invalid && lastNameControl.touched"
+    />
+    <span
+      class="invalid-error"
+      *ngIf="lastNameControl.invalid && lastNameControl.touched"
+      >Last name invalid</span
+    >
+    <label for="city">City:</label>
+    <select
+      class="employee-data city"
+      name="city"
+      id="city"
+      [(ngModel)]="city"
+      required
+    >
+      <option value="lviv">Lviv</option>
+      <option value="london" [ngValue]="london">London</option>
+      <option value="tokyo">Tokyo</option>
+      <option value="toronto">Toronto</option>
+      <option value="newyork ">New York</option>
+    </select>
+    <label for="description">About employee:</label>
+    <textarea
+      [(ngModel)]="description"
+      id="description"
+      name="description"
+      placeholder="Enter short summary..."
+      class="employee-data description"
+      required
+      minlength="10"
+      #descriptionControl="ngModel"
+      [class.erroneous]="
+        descriptionControl.invalid && descriptionControl.touched
+      "
+    >
+    </textarea>
+    <span
+      class="invalid-error"
+      *ngIf="descriptionControl.invalid && descriptionControl.touched"
+      >Description should have at least 10 characters.</span
+    >
+  </div>
+  <div class="add-employee__options">
+    <label for="age">Age: {{ age }}</label>
+    <input
+      [(ngModel)]="age"
+      type="range"
+      name="age"
+      id="age"
+      min="16"
+      max="99"
+      step="1"
+      class="employee-data age"
+      required
+      #ageControl="ngModel"
+    />
+    <p class="gender">Gender:</p>
+    <label>
+      <input
+        [(ngModel)]="gender"
+        type="radio"
+        id="male"
+        name="male"
+        value="0"
+        class="employee-data male"
+      />
+      <span class="styled-radio"></span>
+      Male
+    </label>
+    <label>
+      <input
+        [(ngModel)]="gender"
+        type="radio"
+        id="female"
+        name="female"
+        value="1"
+        class="employee-data female"
+      />
+      <span class="styled-radio"></span>
+      Female
+    </label>
+    <label>
+      <input
+        [(ngModel)]="gender"
+        type="radio"
+        id="disclosed"
+        name="disclosed"
+        value="2"
+        class="employee-data female"
+        checked
+      />
+      <span class="styled-radio"></span>
+      Not disclosed
+    </label>
+    <button
+      class="employee-submit"
+      type="submit"
+      [disabled]="employeeForm.invalid"
+      [class.disabled]="employeeForm.invalid"
+    >
+      <i class="fa fa-check"></i>
+    </button>
+  </div>
+</form>

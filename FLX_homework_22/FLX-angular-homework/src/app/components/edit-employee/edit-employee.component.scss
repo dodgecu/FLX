@@ -1,0 +1,51 @@
+.add-employee {
+  display: flex;
+  padding: 2rem 0;
+  color: #0b192f;
+  &__form-fields {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+  }
+  &__options {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0 10rem;
+    .gender {
+      margin-top: 3rem;
+    }
+  }
+  label {
+    font-size: 2rem;
+    padding: 1rem 0;
+  }
+  .employee-submit {
+    margin-top: auto;
+    border: none;
+    font-size: 10rem;
+    background-color: transparent;
+    color: #0b192f;
+    cursor: pointer;
+  }
+  .employee-submit.disabled {
+    opacity: 0.2;
+    pointer-events: none;
+  }
+  .employee-data:not(.age) {
+    padding: 1rem;
+    font-size: 1.5rem;
+  }
+  .description {
+    min-height: 15rem;
+    resize: none;
+  }
+
+  .erroneous {
+    border: 1px solid #ff0000;
+  }
+
+  .invalid-error {
+    color: red;
+  }
+}

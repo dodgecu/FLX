@@ -1,0 +1,20 @@
+.employee {
+  display: flex;
+  align-items: center;
+  border: 1px solid #0b192f;
+  margin: 2rem 0;
+  padding: 1rem;
+  &__edit {
+    margin-left: auto;
+    &--remove,
+    &--edit,
+    &--details {
+      margin: 0 1rem;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 2rem;
+      color: #0b192f;
+    }
+  }
+}

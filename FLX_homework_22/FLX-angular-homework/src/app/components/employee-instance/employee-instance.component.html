@@ -1,0 +1,26 @@
+<div class="employee">
+  <p class="employee__name">{{ employee.firstName }}</p>
+  <div class="employee__edit">
+    <button
+      (click)="onDelete(employee)"
+      type="text"
+      class="employee__edit--remove"
+    >
+      <i class="fa fa-trash-o"></i>
+    </button>
+    <button
+      type="text"
+      class="employee__edit--edit"
+      [routerLink]="['/edit', employee.id]"
+    >
+      <i class="fa fa-pencil"></i>
+    </button>
+    <button
+      type="text"
+      class="employee__edit--details"
+      [routerLink]="['/employee', employee.id]"
+    >
+      <i class="fa fa-arrow-circle-right"></i>
+    </button>
+  </div>
+</div>
