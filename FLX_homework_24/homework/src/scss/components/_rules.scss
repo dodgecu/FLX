@@ -1,0 +1,36 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  align-items: center;
+  padding: 2rem;
+  line-height: 3rem;
+  &__rules {
+    list-style: none;
+    font-size: 2.5rem;
+    line-height: 6rem;
+  }
+  &__rules--rule {
+    display: flex;
+    text-transform: lowercase;
+
+    &:before {
+      content: "{";
+      margin-right: auto;
+      font-size: 3rem;
+    }
+    &::after {
+      content: "}";
+      margin-left: auto;
+      font-size: 3rem;
+    }
+  }
+  &__special {
+    text-transform: uppercase;
+    font-size: 2rem;
+  }
+  &__rules.removed {
+    transition: all 0.3s;
+    opacity: 0;
+  }
+}

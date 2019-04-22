@@ -1,0 +1,8 @@
+.footer {
+  background-color: $secondary-color;
+  padding: 3rem;
+  &__copyright {
+    font-size: 1.2rem;
+    color: $color-primary;
+  }
+}

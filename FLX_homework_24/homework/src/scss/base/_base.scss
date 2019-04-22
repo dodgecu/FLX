@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  box-sizing: border-box;
+  font-size: $default-font-size;
+}
+body {
+  background-color: $color-primary;
+  font-family: $main-font;
+  color: $secondary-color;
+  max-width: 80%;
+  margin: 10rem auto;
+  border: 2px solid $secondary-color;
+}

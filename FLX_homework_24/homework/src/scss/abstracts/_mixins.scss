@@ -1,0 +1,23 @@
+@mixin button-animated {
+  padding: 1.3rem 5rem;
+  font-size: 2rem;
+  color: $color-primary;
+  background-color: $secondary-color;
+  cursor: pointer;
+  border: 1px solid $color-primary;
+  border-radius: 3rem;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  text-decoration: none;
+  &:focus,
+  &:active {
+    outline: none;
+  }
+  &:active {
+    background-color: darken($secondary-color, 20%);
+  }
+  &:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba($secondary-color, 0.2);
+  }
+}
